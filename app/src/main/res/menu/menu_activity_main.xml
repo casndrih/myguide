@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_flight"
+        android:icon="@drawable/outline_flight_24"
+        android:orderInCategory="100"
+        android:title="Flight Booking"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_alert"
+        android:icon="@drawable/outline_report_problem_24"
+        android:orderInCategory="100"
+        android:title="Covid-19 Info"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_search"
+        android:icon="@drawable/ic_search"
+        android:orderInCategory="100"
+        android:title="Search"
+        app:showAsAction="always" />
+</menu>

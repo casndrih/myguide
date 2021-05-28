@@ -1,0 +1,18 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_weather"
+        android:icon="@drawable/outline_brightness_4_24"
+        android:orderInCategory="100"
+        android:title="Weather"
+        app:showAsAction="always"
+        android:iconTint="@android:color/white"/>
+
+    <item
+        android:id="@+id/action_share"
+        android:icon="@drawable/ic_menu_share"
+        android:orderInCategory="100"
+        android:title="Share"
+        app:showAsAction="always" />
+</menu>

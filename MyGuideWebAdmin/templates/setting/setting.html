@@ -1,0 +1,65 @@
+<md-card class="md-whiteframe-1dp md-padding">
+    <md-card-content>
+        <form role="form" name="thisForm">
+            <md-input-container>
+                <label>Name</label>
+                <input name="name" minlength="1" maxlength="50" ng-model="userdata.name" required/>
+                <div ng-messages="thisForm.name.$error">
+                    <div ng-message='required'>required.</div>
+                    <div ng-message='minlength'>min length 1</div>
+                </div>
+            </md-input-container>
+
+            <md-input-container>
+                <label>Email</label>
+                <input type="email" minlength="5" maxlength="50" name="email" ng-model="userdata.email" required/>
+                <div ng-messages="thisForm.email.$error">
+                    <div ng-message='required'>required.</div>
+                    <div ng-message='minlength'>min length 10.</div>
+                </div>
+            </md-input-container>
+
+            <md-input-container>
+                <label>Username</label>
+                <input name="username" minlength="1" maxlength="20" ng-model="userdata.username"
+                       ng-pattern="username_pattern" required/>
+                <div ng-messages="thisForm.username.$error">
+                    <div ng-message='required'>required.</div>
+                    <div ng-message='minlength'>min length 5.</div>
+                </div>
+            </md-input-container>
+
+            <md-input-container>
+                <label>Password</label>
+                <input type="password" name="password" ng-model="userdata.password" required/>
+                <div ng-messages="thisForm.password.$error">
+                    <div ng-message='required'>required.</div>
+                </div>
+            </md-input-container>
+
+            <md-input-container>
+                <label>Re-Type Password</label>
+                <input type="password" name="re_password" ng-model="re_password"/>
+                <div ng-if="!isPasswordMatch() || !re_passwordValid" class="red-alert">Password not match</div>
+            </md-input-container>
+            <div class="hint">Username & password only allow alphabet, numeric, dash, and underscore</div>
+            <br><br>
+
+            <div layout="row" layout-align="end center" flex="100">
+                <md-button ng-if="!submit_loading"
+                           ng-disabled="!isPasswordMatch() || thisForm.$invalid || demo_version || isClean()"
+                           ng-click="submit(true)" class="md-raised md-accent">
+                    Add New
+                </md-button>
+                <md-button ng-if="!submit_loading"
+                           ng-disabled="!isPasswordMatch() || thisForm.$invalid || demo_version || isClean()"
+                           ng-click="submit(false)" class="md-raised md-accent">
+                    Update
+                </md-button>
+                <md-progress-circular ng-if="submit_loading" class="md-accent" md-mode="indeterminate"
+                                      md-diameter="30px"></md-progress-circular>
+            </div>
+
+        </form>
+    </md-card-content>
+</md-card>

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "961847979143",
+    "project_id": "myguide-3aaea",
+    "storage_bucket": "myguide-3aaea.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:961847979143:android:342e1e15f16c24a4d7dc22",
+        "android_client_info": {
+          "package_name": "com.casper.myguide"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "961847979143-jrdnkn7hstjnjrhjos4cigtr9aa6j2an.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfnEcbGa_-HkUJZNvBL0C55rpDkcvw3DI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "961847979143-jrdnkn7hstjnjrhjos4cigtr9aa6j2an.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

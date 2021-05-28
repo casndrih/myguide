@@ -1,0 +1,51 @@
+<md-card class="md-whiteframe-1dp md-padding">
+    <form role="form" name="thisForm" id="thisForm" novalidate class="md-padding">
+
+        <div layout="row">
+            <md-input-container flex="70">
+                <label>News Title *</label>
+                <input required name="title" ng-model="news.title" maxlength="100">
+            </md-input-container>
+        </div>
+
+        <div layout="row">
+            <md-input-container flex="45">
+                <label>Brief Content *</label>
+                <textarea required name="brief_content" maxlength="200" ng-model="news.brief_content" rows="2"></textarea>
+            </md-input-container>
+        </div>
+
+        <fieldset class="standard margin-input-container md-padding">
+            <legend>Image Banner *</legend>
+            <div layout="row" layout-align="center center">
+                <input class="padding-top-bottom" type="file" name="image" onchange="angular.element(this).scope().onFileSelect(this.files)" flex/>
+                <md-button class="md-icon-button" ng-click="viewImage($event, 'uploads/news/'+news.image)" ng-if="!isNewEntry()">
+                    <md-icon>wallpaper</md-icon>
+                </md-button>
+            </div>
+            <div ng-if="!image.valid" class="red-alert">PNG only, max size 0.5MB</div>
+            <p class="hint">Best image ratio for display is 2:1, recommended size is W:800px H:400px</p>
+        </fieldset>
+        <br>
+        <legend>Full Content *</legend>
+        <div layout="row">
+            <div text-angular="text-angular" required name="full_content" ng-model="news.full_content" flex></div>
+        </div>
+
+
+        <br><br>
+        <md-divider></md-divider>
+        <md-checkbox ng-model="send_gcm">Send GCM to users</md-checkbox>
+
+        <br><br>
+        <em> (*) required field</em>
+
+        <div class="md-actions md-padding" layout="row">
+            <span flex></span>
+            <md-button ng-if="!submit_loading" class="md-warn" ng-click="cancel()"> CANCEL</md-button>
+            <md-button ng-if="!submit_loading" ng-disabled="!isReadySubmit() || thisForm.$invalid" ng-click="submit(news)" class="md-raised md-primary"> {{buttonText}}
+            </md-button>
+            <md-progress-circular ng-if="submit_loading" class="md-accent" md-mode="indeterminate" md-diameter="30px"></md-progress-circular>
+        </div>
+    </form>
+</md-card>

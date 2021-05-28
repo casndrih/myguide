@@ -1,0 +1,93 @@
+apply plugin: 'com.android.application'
+apply plugin: 'io.objectbox'
+
+android {
+    signingConfigs {
+        release {
+            storeFile file('C:\\Users\\PC\\Desktop\\test.keystore')
+            storePassword 'test'
+            keyAlias 'test'
+            keyPassword 'test'
+        }
+    }
+    compileSdkVersion 30
+    buildToolsVersion '30.0.3'
+
+    defaultConfig {
+        applicationId "com.casper.myguide"
+        minSdkVersion 21
+        targetSdkVersion 30
+        versionCode 1
+        multiDexEnabled true
+        versionName "1.0.0"
+        signingConfig signingConfigs.release
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig getSigningConfig()
+            applicationVariants.all { variant ->
+                variant.outputs.all {
+                    def appName = "My Guide"
+                    if (outputFileName != null && outputFileName.endsWith('.apk')) {
+                        outputFileName = appName + " " + defaultConfig.versionName + ".apk"
+                    }
+                }
+            }
+        }
+    }
+
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
+    }
+    buildFeatures {
+        viewBinding = true
+    }
+}
+
+/* IMPORTANT :
+ * Be careful when update dependencies, different version library may caused error */
+dependencies {
+    // library for user interface
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'com.google.android.material:material:1.1.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'com.balysv:material-ripple:1.0.2'
+
+    implementation 'com.airbnb.android:lottie:3.4.1'
+    implementation 'com.mikepenz:fastadapter:3.3.1'
+    implementation 'com.github.bkhezry:prefser:v2.2.1-rx2'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    implementation 'io.github.inflationx:viewpump:2.0.3'
+    implementation 'io.github.inflationx:calligraphy3:3.1.1'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.9.0'
+
+    // RxJava
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.8'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+
+    // library for api
+    implementation 'com.squareup.retrofit2:retrofit:2.2.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.2.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.6.0'
+    implementation 'com.google.code.gson:gson:2.8.4'
+
+    // library for loader image
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+
+    // others library
+    implementation 'com.google.firebase:firebase-core:17.3.0'
+    implementation 'com.google.firebase:firebase-messaging:20.1.5'
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
+    implementation 'com.google.android.gms:play-services-location:17.0.0'
+    implementation 'com.google.maps.android:android-maps-utils:0.4.3'
+    implementation 'com.github.chrisbanes:PhotoView:2.0.0'
+}
+
+apply plugin: "com.google.gms.google-services"
+
