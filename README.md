@@ -1,6 +1,6 @@
 # MyGuide
 MyGuide project is currently under development on new features, bug fixes, clean code and further improvements!
-By **Casper N'drih** & **Isaac Silas**.
+By <a href="https://www.linkedin.com/in/casper-n-drih-722482184">**Casper N'drih**</a> & <a href="https://www.linkedin.com/in/isaac-kialo-jr-silas">**Isaac Silas**</a>.
 
 **MyGuide is a Web Admin controlled Android app which we have developed as part of our project at the 2021 Apec App Challenge. The App strives to provide the best places for Tourism exploration in Papua New Guinea based on different categories as well as Safe travel and Flight booking, Detailed guides and Navigation, Weather forecast and Covid-19 National news.**
 
