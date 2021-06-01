@@ -37,7 +37,7 @@ com.casper.myguide.weatherutils**
 
 **Internet detector, callback class, and snippet com.casper.myguide.utils**
 
-**custom widget class placed on com.casper.myguide.widget**
+**Custom widget class placed on com.casper.myguide.widget**
 
 
 MyGuideWeb admin structure
