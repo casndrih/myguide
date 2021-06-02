@@ -1,9 +1,11 @@
 # MyGuide
-MyGuide project is currently under development on new features, bug fixes, clean code and further improvements!
-By <a href="https://www.linkedin.com/in/casper-n-drih-722482184">**Casper N'drih**</a> & <a href="https://www.linkedin.com/in/isaac-kialo-jr-silas">**Isaac Silas**</a>.
+**MyGuide project is currently under development on new features, bug fixes, clean code and further improvements!
+By <a href="https://www.linkedin.com/in/casper-n-drih-722482184">**Casper N'drih**</a> and <a href="https://www.linkedin.com/in/isaac-kialo-jr-silas">**Isaac Silas**</a>.**
 
-**MyGuide is a Web Admin controlled Android app which we have developed as part of our project at the 2021 Apec App Challenge. The App strives to provide the best places for Tourism exploration in Papua New Guinea based on different categories as well as Safe travel and Flight booking, Detailed guides and Navigation, Weather forecast and Covid-19 National news.**
+# Description
+**MyGuide is a Web Admin controlled Android app which we have developed as part of our project at the 2021 Apec App Challenge. The App strives to provide the best places for Tourism exploration in Papua New Guinea based on different categories as well as Safe travel and Flight booking, Detailed guides and Navigation, Weather forecast and Covid-19 National news. It also supports Firebase Notification(GCM) and Analytics to measure interactions and inform users whenever a place has been added or updated.**
 
+# Screenshots
 <div align="center"> <img src="/screenshot1.jpg" width="400px"</img> </div>
 <div align="center"> <img src="/screenshot5.jpg" width="400px"</img> </div>
 <div align="center"> <img src="/screenshot3.jpg" width="400px"</img> </div>
@@ -13,7 +15,7 @@ By <a href="https://www.linkedin.com/in/casper-n-drih-722482184">**Casper N'drih
 <div align="center"> <img src="/screenshot7.jpg" width="400px"</img> </div>
 <div align="center"> <img src="/screenshot8.jpg" width="400px"</img> </div>
 
-MyGuide Android project structure
+# Android project structure
 (***Folders organize by their function***)
 
 **All Activity Class can be found in com.casper.myguide**
@@ -40,7 +42,7 @@ com.casper.myguide.weatherutils**
 **Custom widget class placed on com.casper.myguide.widget**
 
 
-MyGuideWeb admin structure
+# Web admin structure
 (***Folders organize by their function***)
 
 **1  parent/**
