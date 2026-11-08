@@ -17,9 +17,9 @@ class AdminController extends Controller {
   Auth::login($u); $r->session()->regenerate(); return redirect()->intended(route('admin.dashboard'));
  }
  private function verifyLegacyPassword(AdminUser $u,string $plain): bool {
-  $stored=(string)$u->getAuthPassword(); if(Hash::check($plain,$stored)) return true;
-  if(preg_match('/^[a-f0-9]{32}$/i',$stored) && hash_equals(strtolower($stored),md5($plain))) { $u->forceFill(['password'=>Hash::make($plain)])->save(); return true; }
-  return false;
+  $stored=(string)$u->getAuthPassword();
+  if(preg_match('/^[a-f0-9]{32}$/i',$stored)) { if(!hash_equals(strtolower($stored),md5($plain))) return false; $u->forceFill(['password'=>Hash::make($plain)])->save(); return true; }
+  return Hash::check($plain,$stored);
  }
  public function logout(Request $r): RedirectResponse { Auth::logout(); $r->session()->invalidate(); $r->session()->regenerateToken(); return redirect()->route('login'); }
  public function dashboard(): View { return view('admin.dashboard',['stats'=>['places'=>DB::table('place')->count(),'categories'=>DB::table('category')->count(),'news'=>DB::table('news_info')->count(),'devices'=>DB::table('gcm')->distinct('regid')->count('regid')],'recentPlaces'=>DB::table('place')->orderByDesc('last_update')->limit(8)->get(),'recentNews'=>DB::table('news_info')->orderByDesc('last_update')->limit(8)->get()]); }
