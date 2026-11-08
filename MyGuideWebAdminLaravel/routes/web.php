@@ -2,6 +2,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 Route::redirect('/','/admin');
+Route::redirect('/home','/admin');
 Route::middleware('guest')->group(function(){Route::get('/login',[AdminController::class,'login'])->name('login');Route::post('/login',[AdminController::class,'authenticate'])->middleware('throttle:5,1')->name('login.store');});
 Route::post('/logout',[AdminController::class,'logout'])->middleware('auth')->name('logout');
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function(){
