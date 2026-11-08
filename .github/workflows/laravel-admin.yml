@@ -31,3 +31,5 @@ jobs:
         run: find app bootstrap config routes public -type f -name '*.php' -print0 | xargs -0 -n1 php -l
       - name: Verify Laravel routes load
         run: php artisan route:list
+      - name: Compile Blade templates
+        run: php artisan view:cache
