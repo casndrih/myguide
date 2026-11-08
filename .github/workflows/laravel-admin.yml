@@ -1,0 +1,35 @@
+name: Laravel admin validation
+on:
+  push:
+    paths:
+      - 'MyGuideWebAdminLaravel/**'
+      - '.github/workflows/laravel-admin.yml'
+  pull_request:
+    paths:
+      - 'MyGuideWebAdminLaravel/**'
+      - '.github/workflows/laravel-admin.yml'
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: MyGuideWebAdminLaravel
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: mbstring, pdo_mysql, xml, ctype, json, tokenizer
+          coverage: none
+      - name: Install dependencies
+        run: composer install --no-interaction --prefer-dist
+      - name: Prepare application key
+        run: |
+          cp .env.example .env
+          php artisan key:generate
+      - name: Check PHP syntax
+        run: find app bootstrap config routes public -type f -name '*.php' -print0 | xargs -0 -n1 php -l
+      - name: Verify Laravel routes load
+        run: php artisan route:list
+      - name: Compile Blade templates
+        run: php artisan view:cache

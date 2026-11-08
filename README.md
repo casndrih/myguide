@@ -70,3 +70,10 @@ com.casper.myguide.weatherutils**
 **12 +--- uploads/ # location for uploaded image**
 
 **13 +--- index.html**
+
+
+## Laravel web administration migration
+
+The legacy AngularJS/PHP web administration panel is being replaced incrementally by the Laravel 12 application in the [MyGuideWebAdminLaravel](MyGuideWebAdminLaravel) directory. The Android application and the existing mobile API are being retained during the transition to avoid breaking deployed clients.
+
+The Laravel migration branch currently includes administrator sign-in, a dashboard, destination CRUD with category assignment, and news CRUD. Image uploads, category administration, settings, Firebase notifications, mobile API compatibility and deployment verification are still in progress. Do not switch production traffic until these workflows have been completed and tested against a copy of the existing MySQL database.
