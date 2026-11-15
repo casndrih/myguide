@@ -1,0 +1,113 @@
+plugins {
+    id 'com.android.application'
+    id 'io.objectbox'
+    id 'com.google.gms.google-services'
+}
+
+def releaseStoreFile = System.getenv('MYGUIDE_STORE_FILE')
+def releaseStorePassword = System.getenv('MYGUIDE_STORE_PASSWORD')
+def releaseKeyAlias = System.getenv('MYGUIDE_KEY_ALIAS')
+def releaseKeyPassword = System.getenv('MYGUIDE_KEY_PASSWORD')
+def hasReleaseSigning = releaseStoreFile && releaseStorePassword && releaseKeyAlias && releaseKeyPassword
+
+android {
+    namespace 'com.casper.myguide'
+    compileSdk 36
+    buildToolsVersion '36.0.0'
+
+    defaultConfig {
+        applicationId 'com.casper.myguide'
+        minSdk 21
+        targetSdk 35
+        versionCode 2
+        versionName '1.1.0'
+        multiDexEnabled true
+    }
+
+    signingConfigs {
+        release {
+            if (hasReleaseSigning) {
+                storeFile file(releaseStoreFile)
+                storePassword releaseStorePassword
+                keyAlias releaseKeyAlias
+                keyPassword releaseKeyPassword
+            }
+        }
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+        }
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            if (hasReleaseSigning) {
+                signingConfig signingConfigs.release
+            } else {
+                // A debug-signed release remains installable for CI/testing; never publish it to Play.
+                signingConfig signingConfigs.debug
+            }
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+        coreLibraryDesugaringEnabled true
+    }
+
+    buildFeatures {
+        viewBinding true
+        buildConfig true
+    }
+
+    lint {
+        abortOnError false
+        checkReleaseBuilds false
+    }
+}
+
+dependencies {
+    // AndroidX and UI
+    implementation 'androidx.appcompat:appcompat:1.7.1'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.4.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'com.google.android.material:material:1.13.0'
+    implementation 'androidx.viewpager:viewpager:1.0.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.2.1'
+    implementation 'com.balysv:material-ripple:1.0.2'
+    implementation 'com.airbnb.android:lottie:6.7.1'
+    implementation 'com.mikepenz:fastadapter:3.3.1'
+    implementation 'com.github.bkhezry:prefser:v2.2.1-rx2'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    implementation 'io.github.inflationx:viewpump:2.0.3'
+    implementation 'io.github.inflationx:calligraphy3:3.1.1'
+
+    // Networking and JSON
+    implementation 'com.squareup.retrofit2:retrofit:2.12.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.12.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.12.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.12.0'
+    implementation 'com.google.code.gson:gson:2.13.2'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.21'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+
+    // Images and maps
+    implementation 'com.github.bumptech.glide:glide:4.16.0'
+    // Maps 19.2.0 is the newest SDK line that still supports the app's API 21 minimum.
+    implementation 'com.google.android.gms:play-services-maps:19.2.0'
+    implementation 'com.google.android.gms:play-services-location:21.3.0'
+    implementation 'com.google.maps.android:android-maps-utils:3.19.0'
+    implementation 'com.github.chrisbanes:PhotoView:2.3.0'
+
+    // Firebase SDKs are kept on one compatible release train.
+    implementation platform('com.google.firebase:firebase-bom:33.16.0')
+    implementation 'com.google.firebase:firebase-analytics'
+    implementation 'com.google.firebase:firebase-messaging'
+
+    // Java API backports for older Android releases.
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.1.5'
+}

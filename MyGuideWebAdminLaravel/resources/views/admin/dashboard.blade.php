@@ -1,0 +1,16 @@
+@extends('layouts.admin')
+@section('title','Overview') @section('heading','Overview')
+@section('content')
+<section class="stats">
+@foreach(['places'=>'Destinations','categories'=>'Categories','news'=>'News updates','devices'=>'Registered devices'] as $key=>$label)
+    <article><span>{{ $label }}</span><strong>{{ number_format($stats[$key]) }}</strong></article>
+@endforeach
+</section>
+<section class="panel"><div class="panel-head"><h2>Recently updated destinations</h2><a href="{{ route('admin.places.index') }}">View all</a></div>
+<table><thead><tr><th>Name</th><th>Address</th><th>Updated</th></tr></thead><tbody>
+@forelse($recentPlaces as $place)<tr><td>{{ $place->name }}</td><td>{{ $place->address ?: '—' }}</td><td>{{ $place->last_update ? date('d M Y',(int)$place->last_update) : '—' }}</td></tr>
+@empty<tr><td colspan="3">No destinations found.</td></tr>@endforelse
+</tbody></table></section>
+<section class="panel"><div class="panel-head"><h2>Latest news</h2><a href="{{ route('admin.news.index') }}">View all</a></div>
+<ul>@forelse($recentNews as $item)<li>{{ $item->title }}</li>@empty<li>No news items found.</li>@endforelse</ul></section>
+@endsection

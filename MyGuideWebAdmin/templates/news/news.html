@@ -1,0 +1,49 @@
+<md-card class="md-whiteframe-1dp md-padding">
+	<div class="table-responsive-vertical">
+		<table id="table" class="table table-hover">
+			<thead>
+			<tr >
+				<th width="5%">No</th>
+				<th width="55%">Title</th>
+				<th width="10%">Last Update</th>
+				<th width="10%">Action Menu</th>
+			</tr>
+			</thead>
+
+			<tbody>
+			<tr ng-repeat="n in news_infos">
+				<td data-title="No">{{($index+1) + (paging.current * paging.limit) - paging.limit}}</td>
+				<td data-title="Title">{{n.title | cut:false:80:' ...'}}</td>
+				<td data-title="Last Update">{{n.last_update | date:'dd MMM yy'}}</td>
+				<td data-title="Action Menu">
+					<div layout="row">
+						<md-button class="md-btn-small" ng-click="deleteNews($event, n)">
+							<md-icon class="md-ic-small">delete</md-icon>
+							<md-tooltip>Delete Item</md-tooltip>
+						</md-button>
+						<md-button class="md-btn-small" ng-click="editNews($event, n)">
+							<md-icon class="md-ic-small">create</md-icon>
+							<md-tooltip>Edit Item</md-tooltip>
+						</md-button>
+						<md-button class="md-btn-small" ng-click="detailsNews($event, n)">
+							<md-icon class="md-ic-small">launch</md-icon>
+							<md-tooltip>Detail Item</md-tooltip>
+						</md-button>
+					</div>
+				</td>
+			</tr>
+			</tbody>
+		</table>
+		<div ng-if="loading" style="text-align:center;" colspan="10">
+			<p>Loading</p>
+			<md-progress-linear md-mode="indeterminate"></md-progress-linear>
+		</div>
+
+	</div>
+
+	<!--pagination view-->
+	<section layout="row" flex>
+		<cl-paging flex cl-pages="paging.total" , cl-steps="paging.step" , cl-page-changed="paging.onPageChanged()" , cl-align="center center" , cl-current-page="paging.current"></cl-paging>
+	</section>
+
+</md-card>

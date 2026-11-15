@@ -1,0 +1,71 @@
+<md-dialog layout="column" flex="50" aria-label="dialog place">
+  <form role="form" name="thisForm">
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Details Place : {{place.name}}</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon aria-label="Close dialog">clear</md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content class="autoScroll" style="max-width:800px;max-height:810px;">
+      <img class="md-center" style="margin: auto; max-width: 100%;" ng-src="uploads/place/{{place.image}}" flex="40">
+      <div layout="row">
+        <p flex="35">Address</p> <p flex="5"> : </p> <p>{{place.address}}</p>
+      </div>
+
+      <md-divider ></md-divider>
+      <div layout="row">
+        <p flex="35">Fee</p> <p flex="5"> : </p> <p>{{place.fee}}</p>
+      </div>
+      <div layout="row">
+        <p flex="35">Covid Status</p> <p flex="5"> : </p> <p>{{place.status}}</p>
+      </div>
+
+      <md-divider ></md-divider>
+      <div layout="row">
+        <p flex="35">Phone</p> <p flex="5"> : </p> <p>{{place.phone}}</p>
+      </div>
+      <div layout="row">
+        <p flex="35">Website</p> <p flex="5"> : </p> <p>{{place.website}}</p>
+      </div>
+
+      <md-divider ></md-divider>
+      <div layout="row">
+        <p flex="35">Category</p> <p flex="5"> : </p>
+        <md-chips ng-model="categories" readonly="true">
+          <md-chip-template><span>{{$chip.name}}</span></md-chip-template>
+        </md-chips>
+      </div>
+
+      <md-divider ></md-divider>
+      <div layout="row">
+        <p flex="35">Longitude</p> <p flex="5"> : </p> <p>{{place.lng}}</p>
+      </div>
+      <div layout="row">
+        <p flex="35">Latitude</p> <p flex="5"> : </p> <p>{{place.lat}}</p>
+      </div>
+
+      <md-divider ></md-divider>
+      <div layout="row">
+        <p flex="35">Last Update</p> <p flex="5"> : </p> <p>{{place.last_update | date:'hh.mm, dd MMMM yyyy'}}</p>
+      </div>
+
+      <md-divider ></md-divider>
+      <div layout="row">
+        <p flex="35">Images</p> <p flex="5"> : </p>
+      </div>
+      <div layout="row">
+        <img ng-repeat="i in images" style="margin:5px;max-width:120px;max-height:120px;" ng-src="uploads/place/{{i.name}}">
+      </div>
+
+      <md-divider ></md-divider>
+      <div layout="row">
+        <p flex="35">Description</p> <p flex="5"> : </p>
+      </div>
+      <div ng-bind-html="place.description | trustAsHtml"></div>
+    </md-dialog-content>
+  </form>
+</md-dialog>
