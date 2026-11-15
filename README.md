@@ -26,6 +26,10 @@ The repository contains the Android client, a Laravel 12 administration panel, a
 - Android Gradle Plugin: 8.13.2
 - Gradle wrapper: 8.13
 
+### Download the release APK
+
+The current CI release APK is also committed in the repository root as [`My-Guide-1.1.1-release.apk`](My-Guide-1.1.1-release.apk). Download it directly from the repository or use the [Android release build workflow](https://github.com/casndrih/myguide/actions/workflows/android-build.yml).
+
 ### Build locally
 
 Install JDK 17 and Android SDK platform/build tools 36. Then run:
