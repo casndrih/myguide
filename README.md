@@ -108,7 +108,11 @@ Back up the production database and test the panel against a staging copy before
 
 ### Mobile API compatibility and deployment
 
-Keep the existing `MyGuideWebAdmin/app/services/` REST API available at the URL currently configured in `app/src/main/java/com/casper/myguide/data/Constant.java`. Deploy the Laravel application's `public/` contents as the web document root (or configure an equivalent virtual host), and preserve the existing API endpoint and upload URL paths. Update the Android `Constant.WEB_URL` only when the production domain changes.
+The Android client still calls the legacy REST endpoints under `app/services/` (including `listPlaces`, `getPlaceDetails`, `listNewsInfo`, and `insertGcm`). Keep `MyGuideWebAdmin/app/services/` deployed at the API host currently configured in `app/src/main/java/com/casper/myguide/data/Constant.java`. Do not replace or remove that API when deploying the Laravel panel.
+
+Deploy `MyGuideWebAdminLaravel/public/` as a separate admin virtual host/subdomain (for example, `admin.example.com`) and point its `APP_URL` to that host. Both applications must use the same My Guide database. The Android app's `Constant.WEB_URL` must continue to point at the legacy API host unless the API is deliberately migrated too.
+
+The Laravel panel stores destination and news images in `public/uploads/place` and `public/uploads/news`. These directories must be shared with, or mounted/symlinked to, the legacy API host's public `/uploads/place` and `/uploads/news` paths so the Android client can load images using its existing URL format. Verify file ownership and permissions on both virtual hosts before enabling uploads.
 
 The previous FCM sender used the retired legacy HTTP API. The Laravel admin currently provides device visibility but does not send push messages; production push sending should be wired to Firebase Cloud Messaging HTTP v1 using a server-side service-account credential stored outside the repository.
 
