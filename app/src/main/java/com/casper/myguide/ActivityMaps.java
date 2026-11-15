@@ -107,7 +107,8 @@ public class ActivityMaps extends AppCompatActivity implements OnMapReadyCallbac
             mClusterManager = new ClusterManager<>(this, mMap);
             placeMarkerRenderer = new PlaceMarkerRenderer(this, mMap, mClusterManager);
             mClusterManager.setRenderer(placeMarkerRenderer);
-            mMap.setOnCameraChangeListener(mClusterManager);
+            mMap.setOnCameraIdleListener(mClusterManager);
+            mMap.setOnMarkerClickListener(mClusterManager);
             loadClusterManager(db.getAllPlace());
         }
         mMap.animateCamera(location);
@@ -265,7 +266,8 @@ public class ActivityMaps extends AppCompatActivity implements OnMapReadyCallbac
                 if (isSinglePlace) {
                     isSinglePlace = false;
                     mClusterManager = new ClusterManager<>(this, mMap);
-                    mMap.setOnCameraChangeListener(mClusterManager);
+                    mMap.setOnCameraIdleListener(mClusterManager);
+                    mMap.setOnMarkerClickListener(mClusterManager);
                 }
 
                 List<Place> places = db.getAllPlaceByCategory(cat_id);

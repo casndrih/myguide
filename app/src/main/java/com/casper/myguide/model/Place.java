@@ -30,6 +30,21 @@ public class Place implements Serializable, ClusterItem {
         return new LatLng(lat, lng);
     }
 
+    @Override
+    public String getTitle() {
+        return name;
+    }
+
+    @Override
+    public String getSnippet() {
+        return address;
+    }
+
+    @Override
+    public Float getZIndex() {
+        return 0f;
+    }
+
     public boolean isDraft() {
         return (address.equals("") && fee.equals("") && status.equals("") && phone.equals("") && website.equals("") && description.equals(""));
     }
