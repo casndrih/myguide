@@ -1,0 +1,140 @@
+<md-card class="md-whiteframe-1dp md-padding">
+  <form role="form" name="thisForm" id="thisForm" novalidate class="md-padding">
+
+    <md-input-container flex="100" md-no-float class="margin-input-container">
+      <md-icon>place</md-icon>
+      <input required name="name" ng-model="place.name" maxlength="50" placeholder="Place Name *">
+    </md-input-container>
+
+    <md-input-container flex="100" md-no-float class="margin-input-container">
+      <md-icon>directions</md-icon>
+      <input required name="address" ng-model="place.address" maxlength="100" placeholder="Address *">
+    </md-input-container>
+
+    <div layout="row">
+      <md-input-container flex="40" md-no-float class="margin-input-container">
+        <md-icon class="material-icons">card_giftcard</md-icon>
+        <input name="fee" ng-model="place.fee" maxlength="10" placeholder="Fee">
+      </md-input-container>
+      <div flex="5"></div>
+      <md-input-container flex="40" md-no-float class="margin-input-container">
+        <md-icon class="material-icons">report_problem</md-icon>
+        <input name="status" ng-model="place.status" maxlength="200" placeholder="Covid Status">
+      </md-input-container>
+    </div>
+
+    <div layout="row">
+      <md-input-container flex="40" md-no-float class="margin-input-container">
+        <md-icon>phone_in_talk</md-icon>
+        <input name="phone" ng-model="place.phone" maxlength="25" placeholder="Phone">
+      </md-input-container>
+      <div flex="5"></div>
+      <md-input-container flex="40" md-no-float class="margin-input-container">
+        <md-icon>public</md-icon>
+        <input name="website" ng-model="place.website" maxlength="100" placeholder="Website">
+      </md-input-container>
+    </div>
+
+    <fieldset class="standard margin-input-container">
+      <legend>Category *</legend>
+      <md-input-container>
+        <div layout="row" layout-wrap>
+          <div name="category" flex="50" ng-repeat="i in categories_data">
+            <md-checkbox ng-checked="isCategorySelected(i, cat_selected)" ng-click="toggleCategory(i, cat_selected)">
+              <span ng-if="!isCategorySelected(i, cat_selected)">{{i.name}}</span>
+              <span ng-if="isCategorySelected(i, cat_selected)"><b>{{i.name}}</b></span>
+            </md-checkbox>
+          </div>
+        </div>
+        <div ng-if="!categoryValid" class="red-alert">At least choose one category</div>
+      </md-input-container>
+    </fieldset>
+
+    <fieldset class="standard margin-input-container md-padding">
+      <legend>Image Primary *</legend>
+      <div layout="row" layout-align="center center">
+        <input class="padding-top-bottom" type="file" name="image" onchange="angular.element(this).scope().onFileSelect(this.files)" flex/>
+        <md-button class="md-icon-button" ng-click="viewImage($event, 'uploads/place/'+place.image)" ng-if="!isNewEntry()">
+          <md-icon>wallpaper</md-icon>
+        </md-button>
+      </div>
+      <div ng-if="!imageValid" class="red-alert">JPG/PNG only, max size 0.5MB</div>
+    </fieldset>
+
+    <fieldset class="standard margin-input-container md-padding">
+      <legend>Image Optional</legend>
+      <div layout="column">
+        <div layout="row" layout-align="center center">
+          <input class="padding-top-bottom" type="file" name="image_1" onchange="angular.element(this).scope().onFileSelectImages(this.files, 0)" flex/>
+          <div ng-if="!isNewEntry() && images[0]!=null">
+            <md-button class="md-icon-button" ng-click="deleteImage($event, images[0])"><md-icon>clear</md-icon></md-button>
+            <md-button class="md-icon-button" ng-click="viewImage($event, 'uploads/place/'+images[0].name)"><md-icon>wallpaper</md-icon></md-button>
+          </div>
+        </div>
+        <div ng-if="!imagesValid[0]" class="red-alert">JPG/PNG only, max size 0.5MB</div>
+
+        <div layout="row" layout-align="center center">
+          <input class="padding-top-bottom" type="file" name="image_2" onchange="angular.element(this).scope().onFileSelectImages(this.files, 1)" flex/>
+          <div ng-if="!isNewEntry() && images[1]!=null">
+            <md-button class="md-icon-button" ng-click="deleteImage($event, images[1])"><md-icon>clear</md-icon></md-button>
+            <md-button class="md-icon-button" ng-click="viewImage($event, 'uploads/place/'+images[1].name)"><md-icon>wallpaper</md-icon></md-button>
+          </div>
+        </div>
+        <div ng-if="!imagesValid[1]" class="red-alert">JPG/PNG only, max size 0.5MB</div>
+
+        <div layout="row" layout-align="center center">
+          <input class="padding-top-bottom" type="file" name="image_3" onchange="angular.element(this).scope().onFileSelectImages(this.files, 2)" flex/>
+          <div ng-if="!isNewEntry() && images[2]!=null">
+            <md-button class="md-icon-button" ng-click="deleteImage($event, images[2])"><md-icon>clear</md-icon></md-button>
+            <md-button class="md-icon-button" ng-click="viewImage($event, 'uploads/place/'+images[2].name)"><md-icon>wallpaper</md-icon></md-button>
+          </div>
+        </div>
+        <div ng-if="!imagesValid[2]" class="red-alert">JPG/PNG only, max size 0.5MB</div>
+
+        <div layout="row" layout-align="center center">
+          <input class="padding-top-bottom" type="file" name="image_4" onchange="angular.element(this).scope().onFileSelectImages(this.files, 3)" flex/>
+          <div ng-if="!isNewEntry() && images[3]!=null">
+            <md-button class="md-icon-button" ng-click="deleteImage($event, images[3])"><md-icon>clear</md-icon></md-button>
+            <md-button class="md-icon-button" ng-click="viewImage($event, 'uploads/place/'+images[3].name)"><md-icon>wallpaper</md-icon></md-button>
+          </div>
+        </div>
+        <div ng-if="!imagesValid[3]" class="red-alert">JPG/PNG only, max size 0.5MB</div>
+
+      </div>
+    </fieldset>
+
+    <br>
+    <legend>Description *</legend>
+    <div text-angular="text-angular" required name="description" ng-model="place.description"></div>
+    <br><br>
+
+    <div layout="row" layout-align="start center">
+      <md-input-container flex="30" md-no-float class="margin-input-container">
+        <input type="number" required name="Latitude" ng-model="place.lat" maxlength="100" placeholder="Latitude *">
+      </md-input-container>
+      <div flex="5"></div>
+      <md-input-container flex="30" md-no-float class="margin-input-container">
+        <input type="number" required name="longitude" ng-model="place.lng" maxlength="100" placeholder="Longitude *">
+      </md-input-container>
+      <div flex="4"></div>
+      <md-button class="md-primary" href="http://www.mapcoordinates.net/en" layout-wrap target="_blank">Coordinate Picker</md-button>
+    </div>
+
+    <md-input-container flex="100">
+      <md-checkbox ng-model="send_gcm">Send GCM to users</md-checkbox>
+    </md-input-container>
+
+    <em> (*) required field</em>
+
+    <div class="md-actions md-padding" layout="row">
+      <span flex></span>
+      <md-button ng-if="!submit_loading" class="md-warn" ng-click="cancel()" >
+       CANCEL
+      </md-button>
+      <md-button ng-if="!submit_loading" ng-disabled="!isReadySubmit() || thisForm.$invalid" ng-click="submit(place)" class="md-raised md-primary">
+        {{buttonText}}
+      </md-button>
+      <md-progress-circular ng-if="submit_loading" class="md-accent" md-mode="indeterminate" md-diameter="30px"></md-progress-circular>
+    </div>
+  </form>
+</md-card>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_category"
+        android:icon="@drawable/ic_menu_category"
+        android:title="Category"
+        app:showAsAction="always">
+        <menu>
+            <item
+                android:id="@+id/nav_all"
+                android:title="All Places"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/nav_featured"
+                android:title="Featured"
+                app:showAsAction="never"/>
+            <item
+                android:id="@+id/nav_tour"
+                android:title="Tourist"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/nav_food"
+                android:title="Food"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/nav_hotels"
+                android:title="Hotel"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/nav_ent"
+                android:title="Entertainment"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/nav_sport"
+                android:title="Sport"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/nav_shop"
+                android:title="Shops"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/nav_transport"
+                android:title="Transportation"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/nav_religion"
+                android:title="Religion"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/nav_public"
+                android:title="Public"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/nav_money"
+                android:title="Money"
+                app:showAsAction="never" />
+        </menu>
+
+    </item>
+</menu>

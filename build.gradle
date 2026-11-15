@@ -1,0 +1,26 @@
+// Root build configuration for the My Guide Android application.
+buildscript {
+    ext.objectboxVersion = '5.4.2'
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.13.2'
+        classpath "io.objectbox:objectbox-gradle-plugin:$objectboxVersion"
+        classpath 'com.google.gms:google-services:4.6.0'
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
+    }
+}
+
+tasks.register('clean', Delete) {
+    delete rootProject.buildDir
+}
