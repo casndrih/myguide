@@ -18,7 +18,7 @@ The repository contains the Android client, a Laravel 12 administration panel, a
 ## Android application
 
 - Application ID: `com.casper.myguide`
-- Current version: `1.1.0` (version code 2)
+- Current version: `1.1.1` (version code 3)
 - Minimum Android: API 21
 - Compile SDK: 36
 - Target SDK: 35

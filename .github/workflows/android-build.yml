@@ -27,6 +27,8 @@ on:
       - 'gradlew'
       - 'gradlew.bat'
       - '.github/workflows/android-build.yml'
+      - 'README.md'
+      - 'MyGuideMobileApi/**'
   workflow_dispatch:
 
 permissions:
@@ -67,14 +69,14 @@ jobs:
           mkdir -p release
           APK="$(find app/build/outputs/apk/release -maxdepth 1 -type f -name '*.apk' | head -n 1)"
           test -n "$APK"
-          cp "$APK" "release/My-Guide-1.1.0-release.apk"
+          cp "$APK" "release/My-Guide-1.1.1-release.apk"
           ls -lh release/
 
       - name: Upload release APK
         uses: actions/upload-artifact@v4
         with:
           name: my-guide-android-release-apk
-          path: release/My-Guide-1.1.0-release.apk
+          path: release/My-Guide-1.1.1-release.apk
           if-no-files-found: error
           retention-days: 30
 
