@@ -3,6 +3,7 @@ name: Android release build
 on:
   push:
     branches:
+      - main
       - myguide-main-integration
     paths:
       - 'app/**'
@@ -13,6 +14,7 @@ on:
       - 'gradlew'
       - 'gradlew.bat'
       - '.github/workflows/android-build.yml'
+      - 'README.md'
   pull_request:
     branches:
       - main

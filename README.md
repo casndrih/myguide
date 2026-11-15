@@ -2,7 +2,7 @@
 
 My Guide is an Android application and web-managed tourism guide for Papua New Guinea. It helps visitors explore destinations by category, read travel/news updates, view maps and weather, save favourites, and receive Firebase Cloud Messaging notifications.
 
-The repository contains the Android client, the existing mobile REST API, and a Laravel 12 administration panel. The Laravel panel replaces the old AngularJS/PHP administration interface; the legacy mobile API is retained for deployed Android clients.
+The repository contains the Android client, a Laravel 12 administration panel, and a small legacy PHP mobile API. Laravel is the **only web administration panel**. The old AngularJS/PHP admin interface has been removed; only the API endpoints and existing media required by the Android app remain.
 
 ## Repository layout
 
@@ -11,8 +11,8 @@ The repository contains the Android client, the existing mobile REST API, and a 
 | `app/` | Android application source (Java) |
 | `gradle/`, `gradlew*` | Gradle wrapper |
 | `MyGuideWebAdminLaravel/` | Laravel 12 admin application |
-| `MyGuideWebAdmin/app/services/` | Existing PHP REST API used by Android |
-| `MyGuideWebAdmin/uploads/` | Legacy uploaded media retained for compatibility |
+| `MyGuideMobileApi/app/services/` | Existing PHP REST API used by Android |
+| `MyGuideMobileApi/uploads/` | Legacy uploaded media retained for compatibility |
 | `.github/workflows/` | Android and Laravel CI workflows |
 
 ## Android application
@@ -108,7 +108,7 @@ Back up the production database and test the panel against a staging copy before
 
 ### Mobile API compatibility and deployment
 
-The Android client still calls the legacy REST endpoints under `app/services/` (including `listPlaces`, `getPlaceDetails`, `listNewsInfo`, and `insertGcm`). Keep `MyGuideWebAdmin/app/services/` deployed at the API host currently configured in `app/src/main/java/com/casper/myguide/data/Constant.java`. Do not replace or remove that API when deploying the Laravel panel.
+The Android client still calls the legacy REST endpoints under `app/services/` (including `listPlaces`, `getPlaceDetails`, `listNewsInfo`, and `insertGcm`). Deploy `MyGuideMobileApi/` as the document root of the existing mobile API host. It retains the Android-compatible `app/services/api.php` endpoint and legacy `uploads/` paths. Do not point the Android client at the Laravel admin host.
 
 Deploy `MyGuideWebAdminLaravel/public/` as a separate admin virtual host/subdomain (for example, `admin.example.com`) and point its `APP_URL` to that host. Both applications must use the same My Guide database. The Android app's `Constant.WEB_URL` must continue to point at the legacy API host unless the API is deliberately migrated too.
 
@@ -123,3 +123,19 @@ GitHub Actions validates the Laravel application and builds the Android release 
 ## License and contributors
 
 See [LICENSE](LICENSE). My Guide was originally developed by Casper N'drih and Isaac Silas for the 2021 APEC App Challenge.
+
+
+## Archived application screenshots
+
+> **Important — old SS:** The screenshots below are historical screenshots from the original My Guide Android application (legacy UI, circa 2021). They are included only as visual reference and do **not** represent the current Laravel administration panel or a newly refreshed Android UI. The Laravel admin is the maintained web administration interface.
+
+| Legacy Android screenshot | Preview |
+| --- | --- |
+| Screenshot 1 | ![Old My Guide screenshot 1](screenshot1.jpg) |
+| Screenshot 2 | ![Old My Guide screenshot 2](screenshot2.jpg) |
+| Screenshot 3 | ![Old My Guide screenshot 3](screenshot3.jpg) |
+| Screenshot 4 | ![Old My Guide screenshot 4](screenshot4.jpg) |
+| Screenshot 5 | ![Old My Guide screenshot 5](screenshot5.jpg) |
+| Screenshot 6 | ![Old My Guide screenshot 6](screenshot6.jpg) |
+| Screenshot 7 | ![Old My Guide screenshot 7](screenshot7.jpg) |
+| Screenshot 8 | ![Old My Guide screenshot 8](screenshot8.jpg) |

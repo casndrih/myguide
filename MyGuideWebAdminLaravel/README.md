@@ -33,11 +33,16 @@ The application intentionally does not run schema migrations against the legacy 
 
 Uploaded media is written to `public/uploads/place` and `public/uploads/news`. The web-server user must have write access to these directories.
 
-Keep the legacy REST API in `MyGuideWebAdmin/app/services/` online until all deployed Android clients have migrated to a replacement API. Push notification sending is not included; integrate FCM HTTP v1 with a server-side service-account secret before enabling notification administration.
+Keep the legacy REST API in `MyGuideMobileApi/app/services/` online until all deployed Android clients have migrated to a replacement API. Push notification sending is not included; integrate FCM HTTP v1 with a server-side service-account secret before enabling notification administration.
 
 
 ## Deployment layout
 
-Keep the existing mobile API served from `MyGuideWebAdmin/app/services/` at the URL configured in the Android application's `Constant.WEB_URL`. Deploy this Laravel application's `public/` directory as a separate administration virtual host or subdomain. Both hosts must point to the same existing My Guide MySQL database.
+Keep the existing mobile API served from `MyGuideMobileApi/app/services/` at the URL configured in the Android application's `Constant.WEB_URL`. Deploy this Laravel application's `public/` directory as a separate administration virtual host or subdomain. Both hosts must point to the same existing My Guide MySQL database.
 
 The Laravel `public/uploads/place` and `public/uploads/news` directories must share storage with the legacy API host's public `/uploads/place` and `/uploads/news` paths (for example, with a server-side symlink or shared mounted volume). This is required because the Android client resolves image URLs against its legacy API base URL. Do not change the Android API base URL to the Laravel admin host unless the legacy API routes are also mapped there.
+
+
+## Legacy mobile API separation
+
+The old AngularJS administration UI has been removed from the repository. The only maintained web admin is this Laravel application. The separate `MyGuideMobileApi/` directory contains the PHP REST API and existing media files needed by older Android builds. Deploy it to the current mobile API host as its document root; keep the `app/services/api.php` and `uploads/` URL paths unchanged.
