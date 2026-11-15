@@ -75,3 +75,5 @@ jobs:
           path: release/My-Guide-1.1.0-release.apk
           if-no-files-found: error
           retention-days: 30
+
+# Android SDK setup uses the supported command-line tools package.
