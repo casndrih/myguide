@@ -49,7 +49,7 @@ Do not commit signing keys or passwords. For a signed release, set these environ
 
 Without all four variables, Gradle uses the generated debug keystore so the CI APK can be installed for testing. A debug-signed APK is not a production/Play Store release. The old hard-coded test keystore configuration has been removed.
 
-The Firebase Android configuration remains in `app/google-services.json`. Restrict its API keys in Google Cloud Console and use Firebase project restrictions appropriate to the production package and signing certificate.
+The Firebase Android configuration remains in `app/google-services.json`. Firebase BoM 33.16.0 is used with Messaging 24.1.2 and Analytics 22.5.0 to preserve API 21 support; newer FCM 26 and Maps 20 SDK lines require API 24, so they are intentionally not selected while the app keeps its API 21 minimum. Restrict API keys in Google Cloud Console and use Firebase project restrictions appropriate to the production package and signing certificate.
 
 ## Laravel administration panel
 

@@ -104,7 +104,7 @@ dependencies {
     implementation 'com.github.chrisbanes:PhotoView:2.3.0'
 
     // Firebase SDKs are kept on one compatible release train.
-    implementation platform('com.google.firebase:firebase-bom:35.2.0')
+    implementation platform('com.google.firebase:firebase-bom:33.16.0')
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.google.firebase:firebase-messaging'
 
