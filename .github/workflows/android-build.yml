@@ -34,6 +34,10 @@ jobs:
   assemble-release:
     name: Build APK with R8 and core-library desugaring
     runs-on: ubuntu-latest
+    env:
+      MYGUIDE_STORE_PASSWORD: ${{ secrets.MYGUIDE_STORE_PASSWORD }}
+      MYGUIDE_KEY_ALIAS: ${{ secrets.MYGUIDE_KEY_ALIAS }}
+      MYGUIDE_KEY_PASSWORD: ${{ secrets.MYGUIDE_KEY_PASSWORD }}
     steps:
       - name: Checkout source
         uses: actions/checkout@v7
@@ -51,6 +55,14 @@ jobs:
 
       - name: Install Android SDK packages
         run: sdkmanager "platforms;android-36" "build-tools;36.0.0"
+
+      - name: Configure optional production signing key
+        if: ${{ secrets.MYGUIDE_KEYSTORE_BASE64 != '' }}
+        env:
+          KEYSTORE_BASE64: ${{ secrets.MYGUIDE_KEYSTORE_BASE64 }}
+        run: |
+          echo "$KEYSTORE_BASE64" | base64 --decode > "$RUNNER_TEMP/myguide-release.keystore"
+          echo "MYGUIDE_STORE_FILE=$RUNNER_TEMP/myguide-release.keystore" >> "$GITHUB_ENV"
 
       - name: Configure Gradle
         uses: gradle/actions/setup-gradle@v4

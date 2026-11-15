@@ -47,7 +47,7 @@ Do not commit signing keys or passwords. For a signed release, set these environ
 - `MYGUIDE_KEY_ALIAS`
 - `MYGUIDE_KEY_PASSWORD`
 
-Without all four variables, Gradle produces an unsigned release APK suitable for CI validation and local signing later. The old hard-coded test keystore configuration has been removed.
+Without all four variables, Gradle uses the generated debug keystore so the CI APK can be installed for testing. A debug-signed APK is not a production/Play Store release. The old hard-coded test keystore configuration has been removed.
 
 The Firebase Android configuration remains in `app/google-services.json`. Restrict its API keys in Google Cloud Console and use Firebase project restrictions appropriate to the production package and signing certificate.
 

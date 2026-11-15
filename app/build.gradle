@@ -45,6 +45,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             if (hasReleaseSigning) {
                 signingConfig signingConfigs.release
+            } else {
+                // A debug-signed release remains installable for CI/testing; never publish it to Play.
+                signingConfig signingConfigs.debug
             }
         }
     }
