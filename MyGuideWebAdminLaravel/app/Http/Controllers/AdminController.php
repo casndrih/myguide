@@ -137,16 +137,16 @@ class AdminController extends Controller
     private function placeInput(Request $request): array
     {
         $data = $request->validate([
-            'name' => ['required', 'string', 'max:190'],
+            'name' => ['required', 'string', 'max:50'],
             'image' => ['nullable', 'string', 'max:255'],
             'image_file' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:4096'],
             'gallery_images' => ['sometimes', 'array', 'max:4'],
             'gallery_images.*' => ['image', 'mimes:jpg,jpeg,png,webp', 'max:4096'],
-            'address' => ['nullable', 'string', 'max:255'],
-            'fee' => ['nullable', 'string', 'max:100'],
-            'status' => ['nullable', 'string', 'max:50'],
-            'phone' => ['nullable', 'string', 'max:80'],
-            'website' => ['nullable', 'url', 'max:255'],
+            'address' => ['nullable', 'string', 'max:100'],
+            'fee' => ['nullable', 'string', 'max:10'],
+            'status' => ['nullable', 'string', 'max:200'],
+            'phone' => ['nullable', 'string', 'max:25'],
+            'website' => ['nullable', 'string', 'max:100'],
             'description' => ['nullable', 'string'],
             'lat' => ['nullable', 'numeric', 'between:-90,90'],
             'lng' => ['nullable', 'numeric', 'between:-180,180'],
@@ -275,8 +275,8 @@ class AdminController extends Controller
     private function newsInput(Request $request): array
     {
         $data = $request->validate([
-            'title' => ['required', 'string', 'max:255'],
-            'brief_content' => ['nullable', 'string', 'max:1000'],
+            'title' => ['required', 'string', 'max:100'],
+            'brief_content' => ['nullable', 'string', 'max:200'],
             'full_content' => ['nullable', 'string'],
             'image' => ['nullable', 'string', 'max:255'],
             'image_file' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:4096'],
