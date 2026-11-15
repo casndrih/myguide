@@ -17,7 +17,7 @@ cp .env.example .env
 php artisan key:generate
 ```
 
-Configure the existing My Guide database in `.env`, then run `php artisan optimize:clear` and `php artisan route:list`.
+Configure the existing My Guide database in `.env`, set `SESSION_SECURE_COOKIE=true` on the production HTTPS host (keep it false for local `php artisan serve`), then run `php artisan optimize:clear` and `php artisan route:list`.
 
 The application intentionally does not run schema migrations against the legacy production database. It uses the existing `users`, `place`, `category`, `place_category`, `images`, `news_info`, and `gcm` tables. Test against a database backup before deployment.
 
